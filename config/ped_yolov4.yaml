@@ -1,0 +1,32 @@
+model_name: v5
+data:
+  train_json_path: data/person_train.json
+  val_json_path: data/person_val.json
+  batch_size: 24
+  num_workers: 8
+  debug: False
+  multi_scale: [640]
+model:
+  num_cls: 1
+  anchors: [[9, 15, 16, 36, 32, 55],
+            [39, 107, 70, 93, 76, 193],
+            [139, 176, 161, 330, 311, 405]]
+  strides: [8, 16, 32]
+  scale_name: s
+
+optim:
+  optimizer: SGD
+  lr: 0.01
+  momentum: 0.937
+  alpha: 0.2
+  gamma: 1.0
+  warm_up_epoch: 3
+  weight_decay: 0.0005
+  epochs: 300
+  sync_bn: True
+  milestones: [200, 280]
+val:
+  interval: 1
+  weight_path: weights
+  max_det: 300
+gpus: 1,2,3

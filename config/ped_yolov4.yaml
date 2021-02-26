@@ -2,7 +2,7 @@ model_name: v5
 data:
   train_json_path: data/person_train.json
   val_json_path: data/person_val.json
-  batch_size: 24
+  batch_size: 16
   num_workers: 8
   debug: False
   multi_scale: [640]
@@ -12,7 +12,7 @@ model:
             [39, 107, 70, 93, 76, 193],
             [139, 176, 161, 330, 311, 405]]
   strides: [8, 16, 32]
-  scale_name: s
+  scale_name: l
 
 optim:
   optimizer: SGD
@@ -29,4 +29,4 @@ val:
   interval: 1
   weight_path: weights
   max_det: 300
-gpus: 1,2,3
+gpus: 0,1,2,3
